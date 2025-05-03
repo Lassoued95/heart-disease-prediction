@@ -9,7 +9,7 @@ app = Flask(__name__)
 # Allow CORS from your frontend on Vercel
 CORS(app, origins=[
     "http://localhost:3000",  # Dev frontend
-    "https://heart-disease-prediction-git-main-mohamed-lassoueds-projects.vercel.app"  # Deployed frontend
+    "https://heart-disease-prediction-psi-ten.vercel.app"  # Deployed frontend
 ])
 
 
@@ -20,7 +20,7 @@ model = joblib.load('heart_disease_model.pkl')
 def predict():
     data = request.get_json()
 
-    features = np.array([[ 
+    features = np.array([[
         data['age'],
         data['sex'],
         data['chest_pain'],

@@ -1,4 +1,3 @@
-"use client";
 import { useState } from 'react';
 
 const MedicalForm = () => {
@@ -33,7 +32,8 @@ const MedicalForm = () => {
         );
 
         try {
-            const response = await fetch('https://my-flask-api.onrender.com/predict', {
+            // Replace with your deployed Flask API URL
+            const response = await fetch('https://heart-disease-prediction-rirxutbcx-mohamed-lassoueds-projects.vercel.app/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,21 +57,33 @@ const MedicalForm = () => {
                     Heart Disease Prediction
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    {[
-                        { name: 'age', label: 'Age' },
-                        { name: 'sex', label: 'Sex (1 = Male, 0 = Female)' },
-                        { name: 'chest_pain', label: 'Chest Pain Type (1-4)' },
-                        { name: 'bp', label: 'Blood Pressure' },
-                        { name: 'cholesterol', label: 'Cholesterol' },
-                        { name: 'fbs_over_120', label: 'Fasting Blood Sugar > 120 (0 or 1)' },
-                        { name: 'ekg_results', label: 'EKG Results (0-2)' },
-                        { name: 'max_hr', label: 'Max Heart Rate' },
-                        { name: 'exercise_angina', label: 'Exercise Angina (0 or 1)' },
-                        { name: 'st_depression', label: 'ST Depression' },
-                        { name: 'slope_st', label: 'Slope of ST (1-3)' },
-                        { name: 'num_vessels', label: 'Number of Vessels (0-3)' },
-                        { name: 'thallium', label: 'Thallium (1-3)' },
-                    ].map(({ name, label }) => (
+                    {[{
+                        name: 'age', label: 'Age'
+                    }, {
+                        name: 'sex', label: 'Sex (1 = Male, 0 = Female)'
+                    }, {
+                        name: 'chest_pain', label: 'Chest Pain Type (1-4)'
+                    }, {
+                        name: 'bp', label: 'Blood Pressure'
+                    }, {
+                        name: 'cholesterol', label: 'Cholesterol'
+                    }, {
+                        name: 'fbs_over_120', label: 'Fasting Blood Sugar > 120 (0 or 1)'
+                    }, {
+                        name: 'ekg_results', label: 'EKG Results (0-2)'
+                    }, {
+                        name: 'max_hr', label: 'Max Heart Rate'
+                    }, {
+                        name: 'exercise_angina', label: 'Exercise Angina (0 or 1)'
+                    }, {
+                        name: 'st_depression', label: 'ST Depression'
+                    }, {
+                        name: 'slope_st', label: 'Slope of ST (1-3)'
+                    }, {
+                        name: 'num_vessels', label: 'Number of Vessels (0-3)'
+                    }, {
+                        name: 'thallium', label: 'Thallium (1-3)'
+                    }].map(({ name, label }) => (
                         <div className="flex flex-col" key={name}>
                             <label htmlFor={name} className="mb-1 text-gray-700">{label}</label>
                             <input
