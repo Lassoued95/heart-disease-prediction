@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import joblib
 import numpy as np
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 
@@ -14,9 +15,9 @@ model = joblib.load('heart_disease_model.pkl')  # Replace with your model path
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()  # Get JSON data from the request
-    
+
     # Extract the features from the received data
-    features = np.array([[
+    features = np.array([[ 
         data['age'],
         data['sex'],
         data['chest_pain'],
@@ -40,5 +41,6 @@ def predict():
     return jsonify({'prediction': result})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)  # Required for Render
- # Running on localhost:5000
+    # Use the port provided by Render's environment, default to 5000 if not set
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
