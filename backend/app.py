@@ -7,7 +7,11 @@ import os
 app = Flask(__name__)
 
 # Allow CORS from your frontend on Vercel
-CORS(app, origins=["https://heart-disease-prediction-git-main-mohamed-lassoueds-projects.vercel.app"])
+CORS(app, origins=[
+    "http://localhost:3000",  # Dev frontend
+    "https://heart-disease-prediction-git-main-mohamed-lassoueds-projects.vercel.app"  # Deployed frontend
+])
+
 
 # Load your trained model
 model = joblib.load('heart_disease_model.pkl')
