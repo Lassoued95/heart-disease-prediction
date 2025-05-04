@@ -16,6 +16,10 @@ CORS(app, origins=[
 # Load your trained model
 model = joblib.load('heart_disease_model.pkl')
 
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({'message': 'Hello from Flask!'})
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
@@ -34,6 +38,7 @@ def predict():
         data['slope_st'],
         data['num_vessels'],
         data['thallium']
+       
     ]])
 
     prediction = model.predict(features)
