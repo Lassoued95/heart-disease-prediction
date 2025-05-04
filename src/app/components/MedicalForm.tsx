@@ -44,7 +44,13 @@ const MedicalForm = () => {
 
             const result = await response.json();
             console.log("✅ Backend response:", result);
-            alert(`Prediction result: ${result.prediction}`);
+            if (result.prediction === "Presence") {
+                alert(`Prediction result: ${result.prediction} 😢`);
+                return false;
+            } else {
+                alert(`Prediction result: ${result.prediction} ❤️`);
+                return false;
+            }
         } catch (error) {
             console.error("❌ Error connecting to API:", error);
             alert("An error occurred while making the prediction.");
