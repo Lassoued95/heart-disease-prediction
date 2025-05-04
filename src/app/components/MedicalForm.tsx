@@ -33,7 +33,7 @@ const MedicalForm = () => {
 
         try {
             // Replace with your deployed Flask API URL
-            const response = await fetch('https://heart-disease-prediction-rirxutbcx-mohamed-lassoueds-projects.vercel.app/predict', {
+            const response = await fetch('https://heart-api-3txz.onrender.com/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
