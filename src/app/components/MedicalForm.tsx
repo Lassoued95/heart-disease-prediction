@@ -1,5 +1,6 @@
 "use client";
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 const MedicalForm = () => {
     const [formData, setFormData] = useState({
@@ -48,16 +49,20 @@ const MedicalForm = () => {
             const result = await response.json();
             setPrediction(result.prediction);
             setIsLoading(false);
-            alert(`Prediction result: ${result.prediction === "Presence" ? '😢 Heart Disease Detected' : '❤️ No Heart Disease'}`);
+
+            toast.success(result.prediction === "Presence"
+                ? '😢 Heart Disease Detected'
+                : '❤️ No Heart Disease Detected');
         } catch (error) {
             console.error("❌ Error connecting to API:", error);
             setIsLoading(false);
-            alert("An error occurred while making the prediction.");
+            toast.error("An error occurred while making the prediction.");
         }
     };
 
     return (
         <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-900 min-h-screen p-4">
+            <Toaster position="top-center" reverseOrder={false} />
             <div className="max-w-lg mx-auto bg-white rounded-lg shadow-lg p-8">
                 <h2 className="text-3xl font-semibold text-center mb-6 text-blue-600">Heart Disease Prediction</h2>
 
